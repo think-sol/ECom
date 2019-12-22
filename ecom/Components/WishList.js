@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import mobile1 from './images/mobile1.jpg';
-import {Card,Divider,Text,Icon,Rating,Button} from 'react-native-elements';
+import {Card,Text,Icon,Rating,Button} from 'react-native-elements';
 import {
   StyleSheet,
   View,
@@ -42,11 +42,14 @@ class WishList extends Component{
 
                         renderItem={({item})=>(
                       
-                        <Card containerStyle={{padding:0,width:width*0.41}}>
-                            <Image source={mobile1} style={{height:100,width:width*0.41}} />
+                        <Card containerStyle={{padding:0,width:width*0.46,marginRight:2,marginLeft:9,borderRadius:10}}>
+                            <Image source={mobile1} style={{height:100,width:width*0.46,margin:0,borderTopLeftRadius:10,borderTopRightRadius:10}} />
                             
-                            <Text h4 style={{color:'gray',alignSelf:'center',marginTop:5}}>{item.name}</Text>
-                            <Rating imageSize={23} style={{marginBottom:5,marginTop:5}} />  
+                            <Text h4 style={{color:'gray',alignSelf:'center',marginTop:10}}>{item.name}</Text>
+                            <View style={{display:'flex',flexDirection:'row',justifyContent:'space-between',alignItems:'center',padding:10}}>
+                                <Rating imageSize={20} /> 
+                                <Text>2.5</Text>
+                            </View> 
                             <Button 
                                 title="View" 
                                 buttonStyle={{backgroundColor:'#0b7253',width:100,alignSelf:'center',marginBottom:5,marginTop:5,height:40}} 
