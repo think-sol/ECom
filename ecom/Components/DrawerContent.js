@@ -63,6 +63,8 @@ class Home extends Component{
                   icon={<Icon type="feather" name="list" color="#0b7253" />}
                   onPress={()=>this.props.navigation.navigate('MyItems')}
                 />
+
+                <Button title="Sign Out" buttonStyle={{backgroundColor:'#0b7253',alignSelf:'center',marginTop:50,width:100}}/>
             </View>
           );
     }

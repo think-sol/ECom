@@ -31,7 +31,7 @@ class Home extends Component{
                       <Icon type="material" name="menu" size={43} color="white"  />
                   </TouchableOpacity>
                   <Text h3 style={{color:'white'}}>Shopoholic</Text>
-                  <Icon type="material" name="tune" size={40} color="white"  />
+                  <Icon type="material" name="tune" size={40} color="white" onPress={()=>{this.props.navigation.navigate('Filter')}} />
               </View>
 
               <ScrollView showsVerticalScrollIndicator={false}>

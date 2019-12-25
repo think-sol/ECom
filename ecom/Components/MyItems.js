@@ -32,9 +32,9 @@ class MyItems extends Component{
                       <Icon type="material" name="menu" size={43} color="white"  />
                   </TouchableOpacity>
                   <Text h3 style={{color:'white'}}>Shopoholic</Text>
-                  <Icon type="material" name="tune" size={40} color="white"  />
               </View>
               <ScrollView showsVerticalScrollIndicator={false}>
+                    <Text h3 style={{alignSelf:'center',color:'gray'}}>My Items</Text>
 
                     <FlatList 
                         numColumns={2}

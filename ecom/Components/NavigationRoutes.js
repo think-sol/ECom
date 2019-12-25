@@ -9,6 +9,7 @@ import Profile from "./Profile";
 import Wishes from "./WishList";
 import AddItem from "./AddItem";
 import MyItems from "./MyItems";
+import Filter from './Filter';
 import SplashScreen from "./SplashScreen";
 import EditProfile from "./EditProfile";
 import DrawerContent from "./DrawerContent";
@@ -30,6 +31,9 @@ const StackNav = createStackNavigator({
     },
     EditProfile:{
         screen:EditProfile
+    },
+    Filter:{
+        screen:Filter
     }
 
 },

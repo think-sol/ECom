@@ -16,7 +16,6 @@ class MyProfile extends Component{
                       <Icon type="material" name="menu" size={43} color="white"  />
                   </TouchableOpacity>
                   <Text h3 style={{color:'white'}}>Shopoholic</Text>
-                  <Icon type="material" name="tune" size={40} color="white"  />
               </View>
               <View style={{width:'100%',marginTop:20,paddingLeft:'5%',paddingRight:'5%'}}>
                   <View style={{backgroundColor:'lightgray',width:'100%',display:'flex',flexDirection:'row',justifyContent:'center',padding:10}}>
