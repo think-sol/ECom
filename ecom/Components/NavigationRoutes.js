@@ -15,7 +15,7 @@ import EditProfile from "./EditProfile";
 import DrawerContent from "./DrawerContent";
 
 
-const StackNav = createStackNavigator({
+const LogInStackNav = createStackNavigator({
 
     SplashScreen:{
         screen:SplashScreen
@@ -26,21 +26,92 @@ const StackNav = createStackNavigator({
     SignUp:{
         screen:SignUp
     },
-    ItemDescription:{
-        screen:ItemDescription
-    },
-    EditProfile:{
-        screen:EditProfile
-    },
-    Filter:{
-        screen:Filter
-    }
 
 },
 {
     headerMode:'none'
 }
 )
+
+const HomeStack = createStackNavigator({
+    Home:{screen:Home},
+    ItemDescription:{screen:ItemDescription}, 
+    Filter:{screen:Filter}
+},
+{
+    headerMode:'none'
+}
+)
+HomeStack.navigationOptions= ({ navigation }) => {
+    let drawerLockMode  = 'unlocked';
+    if (navigation.state.index > 0) {
+        drawerLockMode  = 'locked-closed';
+    }
+  
+    return {
+        drawerLockMode ,
+    };
+};
+
+const ProfileStack= createStackNavigator({
+    Profile:{screen:Profile},
+    EditProfile:{
+        screen:EditProfile,
+    }
+    
+},
+{
+    headerMode:'none'
+}
+)
+ProfileStack.navigationOptions= ({ navigation }) => {
+    let drawerLockMode  = 'unlocked';
+    if (navigation.state.index > 0 && navigation.state.routes[1].routeName === "EditProfile") {
+        drawerLockMode  = 'locked-closed';
+    }
+  
+    return {
+        drawerLockMode ,
+    };
+};
+
+const WishesStack =createStackNavigator({
+    Wishes:{screen:Wishes},
+    ItemDescription:{screen:ItemDescription}
+},
+{
+    headerMode:'none'
+}
+)
+WishesStack.navigationOptions= ({ navigation }) => {
+    let drawerLockMode  = 'unlocked';
+    if (navigation.state.index > 0 && navigation.state.routes[1].routeName === "ItemDescription") {
+        drawerLockMode  = 'locked-closed';
+    }
+  
+    return {
+        drawerLockMode ,
+    };
+};
+
+const MyItemsStack = createStackNavigator({
+    MyItems:{screen:MyItems},
+    ItemDescription:{screen:ItemDescription}
+},
+{
+    headerMode:'none'
+}
+)
+MyItemsStack.navigationOptions= ({ navigation }) => {
+    let drawerLockMode ='unlocked';
+    if (navigation.state.index > 0 && navigation.state.routes[1].routeName === "ItemDescription") {
+        drawerLockMode  = 'locked-closed';
+    }
+  
+    return {
+        drawerLockMode ,
+    };
+};
 
 
 const width = Dimensions.get('window').width;
@@ -55,28 +126,20 @@ const drawerConfig = {
 
 const DrawerNav = createDrawerNavigator({
 
-    StackNav:{
-        screen:StackNav
-    },
-    Home:{
-        screen:Home
-    },
-    Profile:{
-        screen:Profile
-    },
-    Wishes:{
-        screen:Wishes
-    },
-    AddItem:{
-        screen:AddItem
-    },
-    MyItems:{
-        screen:MyItems
-    }
+    Home:HomeStack,
+    Profile:ProfileStack,
+    Wishes:WishesStack,
+    AddItem:AddItem,
+    MyItems:MyItemsStack
 
 },
 drawerConfig
 )
 
+const RootNav = createSwitchNavigator({
+    LogInStackNav:LogInStackNav,
+    DrawerNav:DrawerNav
+})
 
-export default createAppContainer(DrawerNav);
+
+export default createAppContainer(RootNav);

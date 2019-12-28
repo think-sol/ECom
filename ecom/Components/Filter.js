@@ -19,7 +19,10 @@ class Filter extends Component{
       multiSlider:[0,70000],
       isSeven:false,
       isTwentyFour:true,
-      isThirty:false
+      isThirty:false,
+      textValue:'',
+      latitude:24.8607,
+      longitude:67.0011
     
     }
 
@@ -31,6 +34,19 @@ class Filter extends Component{
     }
     handleThirty=()=>{
       this.setState({isTwentyFour:false,isSeven:false,isThirty:true})
+    }
+    handleMarker=()=>{
+      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${this.state.textValue},+CA&key=AIzaSyD8DFmgyvYcEyrtPcx3kAhGh5s0wWYTSq4`)
+      .then(res1=>res1.json())
+      .then(res2=>
+        this.setState({
+            
+              latitude:res2.results[0].geometry.location.lat,
+              longitude:res2.results[0].geometry.location.lng
+            
+        })
+        )
+
     }
 
     render(){
@@ -72,7 +88,7 @@ class Filter extends Component{
                         <MultiSlider  
                           sliderLength={320}
                           min={0}
-                          max={1000}
+                          max={7000}
                           step={30}
                           valuePrefix="$"
                           containerStyle={{alignSelf:'center'}}
@@ -85,18 +101,20 @@ class Filter extends Component{
                         
 
                         />
-                        <Input placeholder="Where.." containerStyle={{width:'94%',alignSelf:'center'}} rightIcon={<Icon type="material" name="search" />} />
+                        <Input placeholder="Where.." containerStyle={{width:'94%',alignSelf:'center'}} rightIcon={<Icon type="material" name="search" onPress={this.handleMarker}  />}  onChangeText={(Text)=>{this.setState({textValue:Text})}}  />
                         <MapView style={{height:200,width:width*0.9,marginTop:10,alignSelf:'center'}}
                         
                           initialRegion={{
-                            latitude: 24.8607,
-                            longitude: 67.0011,
+                            latitude: this.state.latitude,
+                            longitude: this.state.longitude,
                             latitudeDelta: 0.0922,
                             longitudeDelta: 0.0421,
                           }}
+
+                          Component
                         
                         >
-                          <Marker coordinate={{latitude:24.8607,longitude:67.0011}} />
+                          <Marker coordinate={{latitude:this.state.latitude,longitude:this.state.longitude}}/>
                         </MapView>
                           
                         <View style={{marginTop:10,width:'90%',alignSelf:'center',height:100}}>
